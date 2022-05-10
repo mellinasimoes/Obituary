@@ -10,16 +10,16 @@ import { Connection, createConnection, getConnectionOptions } from "typeorm";
 //   createConnection({
 //     ...options,
 
-export default async (host="database_obituary"): Promise<Connection> => {
+export default async (host = "database_obituary"): Promise<Connection> => {
   const defaultOptions = await getConnectionOptions();
 
   return createConnection(
-    Object.assign(defaultOptions,{
-      host: process.env.NODE_ENV === "test"? "localhost":host, //se o process.env.NODE_ENV for igual a "test" tem que passar o host que está sendo usado, no caso localhost
-      database: 
-      process.env.NODE_ENV === "test"  //se o env.NODE_ENV for igual a "test" usar o banco de dados "obituary_test", do contrario usar o default
-        ? "obituary_test"
-        : defaultOptions.database,
-    })
-  );   // se o process.env.NODE_ENV for igual a  "test"
+    Object.assign(defaultOptions, {
+      host: process.env.NODE_ENV === "test" ? "localhost" : host, //se o process.env.NODE_ENV for igual a "test" tem que passar o host que está sendo usado, no caso localhost
+      database:
+        process.env.NODE_ENV === "test" //se o env.NODE_ENV for igual a "test" usar o banco de dados "obituary_test", do contrario usar o default
+          ? "obituary_test"
+          : defaultOptions.database,
+    }),
+  ); // se o process.env.NODE_ENV for igual a  "test"
 };

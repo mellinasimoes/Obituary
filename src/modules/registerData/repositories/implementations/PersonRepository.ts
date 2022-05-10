@@ -1,26 +1,15 @@
-import {Person} from "../../entities/Person";
-import {IPersonRepository, ICreatePersonDTO} from "../IPersonRepository"
-import {Repository, getRepository} from "typeorm";
+import { Person } from "../../entities/Person";
+import { IPersonRepository, ICreatePersonDTO } from "../IPersonRepository";
+import { Repository, getRepository } from "typeorm";
 
 class PersonRepository implements IPersonRepository {
-  private repository:Repository<Person>;
+  private repository: Repository<Person>;
 
-  constructor (){
-    this.repository= getRepository(Person);
+  constructor() {
+    this.repository = getRepository(Person);
   }
 
-  async create ({name,
-    cpf,
-    birth_date,
-    birth_city,
-    birth_state,
-    citizenship,
-    fathers_name,
-    mothers_name,
-    profession,
-    race,
-    notes}:ICreatePersonDTO): Promise<Person> {
-    const person= this.repository.create({
+  async create({
     name,
     cpf,
     birth_date,
@@ -32,40 +21,45 @@ class PersonRepository implements IPersonRepository {
     profession,
     race,
     notes,
+  }: ICreatePersonDTO): Promise<Person> {
+    const person = this.repository.create({
+      name,
+      cpf,
+      birth_date,
+      birth_city,
+      birth_state,
+      citizenship,
+      fathers_name,
+      mothers_name,
+      profession,
+      race,
+      notes,
     });
 
-    const personCreated= await this.repository.save(person);
-    
-    return personCreated;
+    return await this.repository.save(person);
   }
 
   async list(): Promise<Person[]> {
-    const person= await this.repository.find({
-      order:{
-        name:"ASC",
-      }
+    return await this.repository.find({
+      order: {
+        name: "ASC",
+      },
     });
-    return person;
   }
 
-  async findByName(name:string):Promise<Person[] | undefined>{
-    const person = await this.repository.find({name});
-    return person;
-
+  async findByName(name: string): Promise<Person[] | undefined> {
+    return await this.repository.find({ name });
   }
-  async findByMothersName(mothers_name:string):Promise<Person[] | undefined>{
-    const person = await this.repository.find({mothers_name});
-    return person;
+  async findByMothersName(mothers_name: string): Promise<Person[] | undefined> {
+    return await this.repository.find({ mothers_name });
   }
 
   async findByPersonId(id: string): Promise<Person> {
-    const person = await this.repository.findOne({id});
-    return person
+    return await this.repository.findOne({ id });
   }
 
   async findByCPF(cpf: string): Promise<Person> {
-    const person = await this.repository.findOne({cpf});
-    return person
-  }  
+    return await this.repository.findOne({ cpf });
+  }
 }
-export {PersonRepository};
+export { PersonRepository };

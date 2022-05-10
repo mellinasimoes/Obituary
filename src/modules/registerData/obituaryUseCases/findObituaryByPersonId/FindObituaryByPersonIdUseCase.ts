@@ -1,25 +1,24 @@
-import { injectable, inject } from 'tsyringe';
-import { AppError } from '../../../../database/errors/AppError';
-import { IObituaryRepository } from '../../repositories/IObituaryRepository';
-import { Obituary } from '../../entities/Obituary';
+import { injectable, inject } from "tsyringe";
+import { AppError } from "../../../../database/errors/AppError";
+import { IObituaryRepository } from "../../repositories/IObituaryRepository";
+import { Obituary } from "../../entities/Obituary";
 
 @injectable()
-class FindObituaryByPersonIdUseCase{
-  constructor (
+class FindObituaryByPersonIdUseCase {
+  constructor(
     @inject("ObituaryRepository")
-    private obituaryRepository: IObituaryRepository
-    ){}
+    private obituaryRepository: IObituaryRepository,
+  ) {}
 
-  async execute({person_id}): Promise <Obituary|null> {
+  async execute({ person_id }): Promise<Obituary | null> {
     const findObituaryByPersonId = await this.obituaryRepository.findObituaryByPersonId(person_id);
 
-    if (!findObituaryByPersonId){
-      throw new AppError ("Person Id not found!")
+    if (!findObituaryByPersonId) {
+      throw new AppError("Person Id not found!");
     }
 
-    return findObituaryByPersonId;      
-    
+    return findObituaryByPersonId;
   }
 }
 
-export {FindObituaryByPersonIdUseCase}
+export { FindObituaryByPersonIdUseCase };

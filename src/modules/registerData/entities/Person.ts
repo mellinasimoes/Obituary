@@ -8,7 +8,7 @@ class Person {
 
   @Column()
   name: string | undefined;
-  
+
   @Column()
   cpf: string | undefined;
 
@@ -35,7 +35,7 @@ class Person {
 
   @Column()
   race: string | undefined;
-  
+
   @Column()
   notes: string | undefined;
 
@@ -44,7 +44,7 @@ class Person {
 
   constructor(id?: string) {
     if (!this.id) {
-      this.id = uuidV4();    
+      this.id = uuidV4();
     } else {
       this.id = id;
     }
