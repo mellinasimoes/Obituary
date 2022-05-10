@@ -5,7 +5,7 @@ import { IObituaryRepository } from "../../modules/registerData/repositories/IOb
 import { ObituaryRepository } from "../../modules/registerData/repositories/implementations/ObituaryRepository";
 import { IUsersRepository } from "../../modules/accounts/repositories/IUsersRepository";
 import { UsersRepository } from "../../modules/accounts/repositories/implementations/UsersRepository";
-import { IUsersTokensRepository } from "src/modules/accounts/repositories/implementations/IUsersTokensRepository";
+import { IUsersTokensRepository } from "../../modules/accounts/repositories/implementations/IUsersTokensRepository";
 import { UsersTokensRepository } from "../../../src/modules/accounts/repositories/implementations/UsersTokenRepository";
 import "./providers/index";
 
