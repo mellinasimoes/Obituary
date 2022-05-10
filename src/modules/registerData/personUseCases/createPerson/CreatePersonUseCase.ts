@@ -16,7 +16,7 @@ interface IRequest {
   fathers_name?: string;
   notes?: string;
 }
-//Reponsável por chamar(executar) a manipulação dos dados da entidade Repository
+
 @injectable()
 class CreatePersonUseCase {
   constructor(

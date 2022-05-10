@@ -7,13 +7,11 @@ let personRepositoryInMemory: PersonRepositoryInMemory;
 
 describe("Create Person", () => {
   beforeEach(() => {
-    // Antes de algum teste vai fazer alguma coisa
     personRepositoryInMemory = new PersonRepositoryInMemory();
     createPersonUseCase = new CreatePersonUseCase(personRepositoryInMemory);
   });
 
   it("Should be able to create a new person", async () => {
-    //it é o que se espera
     const person = await createPersonUseCase.execute({
       name: "João da Silva",
       cpf: "254.856.854-47",
@@ -32,8 +30,6 @@ describe("Create Person", () => {
   });
 
   it("Should not be able to create a new person with same cpf", async () => {
-    //it é o que se espera
-
     const person = {
       name: "João Souza",
       cpf: "254.856.854-47",
@@ -79,7 +75,3 @@ describe("Create Person", () => {
     ).rejects.toEqual(new AppError("CPF already exists!"));
   });
 });
-
-//Não vamos testar acesso ao banco de dados,
-//Usaremos repositórios "fakes" chamados de repository in-memory
-//Vamos usar as interfaces

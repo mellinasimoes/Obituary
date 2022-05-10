@@ -27,7 +27,7 @@ class RefreshTokenUseCase {
   async execute(token: string): Promise<ITokenResponse> {
     const { email, sub } = verify(token, auth.secret_refresh_token) as Ipayload;
 
-    const user_id = sub; // user_id está dento do sub
+    const user_id = sub;
 
     const userToken = await this.usersTokensRepository.findByUserIdAndRefreshToken(user_id, token);
 
@@ -51,7 +51,6 @@ class RefreshTokenUseCase {
     });
 
     const newToken = sign({}, auth.secret_token, {
-      //chave secreta gerada pelo MD5
       subject: user_id,
       expiresIn: auth.expires_in_token,
     });

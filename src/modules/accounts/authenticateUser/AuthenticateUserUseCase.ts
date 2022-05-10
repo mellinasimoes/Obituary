@@ -6,7 +6,7 @@ import { IUsersTokensRepository } from "../repositories/implementations/IUsersTo
 
 import auth from "../../../config/auth";
 import { AppError } from "../../../database/errors/AppError";
-import { IDateProvider } from "src/shared/container/providers/implementations/IDateProvider";
+import { IDateProvider } from "../../../shared/container/providers/implementations/IDateProvider";
 
 interface IRequest {
   login: string;
@@ -26,7 +26,7 @@ interface IResponse {
 class AuthenticateUserUseCase {
   constructor(
     @inject("UsersRepository")
-    private usersRepository: IUsersRepository, //IUsersRepository tem as funções create e findByEmail
+    private usersRepository: IUsersRepository,
     @inject("UsersTokensRepository")
     private usersTokensRepository: IUsersTokensRepository,
     @inject("DayjsDateProvider")
@@ -54,7 +54,6 @@ class AuthenticateUserUseCase {
     }
 
     const token = sign({}, secret_token, {
-      //chave secreta gerada pelo MD5
       subject: user.id,
       expiresIn: expires_in_token,
     });
