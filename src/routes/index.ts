@@ -9,6 +9,6 @@ const router = Router();
 router.use("/person", personRoutes);
 router.use("/obituary", obituaryRoutes);
 router.use("/users", usersRoutes);
-router.use("/sessions", authenticateRoutes);
+router.use(authenticateRoutes);
 
 export { router };

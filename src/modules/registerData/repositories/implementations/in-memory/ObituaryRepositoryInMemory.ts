@@ -1,5 +1,5 @@
 import { IObituaryRepository, IcreateObituaryDTO } from "../../IObituaryRepository";
-import { Obituary } from "src/modules/registerData/entities/Obituary";
+import { Obituary } from "../../../entities/Obituary";
 
 class ObituaryRepositoryInMemory implements IObituaryRepository {
   obituaries: Obituary[] = [];
